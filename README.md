@@ -1,4 +1,3 @@
-```markdown
 # YouTube Script Generator
 
 YouTube Script Generator is a Python application developed during an internship to convert YouTube videos into text transcripts and generate cohesive scripts using generative AI models.
@@ -39,6 +38,3 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
-```
-
-Feel free to use this markdown in your GitHub repository!
