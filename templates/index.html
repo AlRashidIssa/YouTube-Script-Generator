@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>YouTube Script Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Script Generator</h1>
+        <form action="/generate" method="post">
+            <div class="form-group">
+                <label for="urls">YouTube URLs (one per line):</label><br>
+                <textarea name="urls" id="urls" rows="5" cols="40" placeholder="Enter YouTube URLs here..."></textarea><br>
+            </div>
+            <div class="form-group">
+                <label for="language_script">Language Script:</label><br>
+                <input type="text" name="language_script" id="language_script" placeholder="e.g., en"><br>
+            </div>
+            <input type="submit" value="Generate Script" class="btn">
+        </form>
+    </div>
+</body>
+</html>

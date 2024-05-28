@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Generated Script</title>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Generated Script</h1>
+        <div class="script-content">
+            <pre id="markdown-content">{{ script }}</pre>
+        </div>
+        <div id="html-content"></div>
+        <a href="/" class="btn">Go Back</a>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var converter = new showdown.Converter();
+            var markdownContent = document.getElementById("markdown-content").textContent;
+            var htmlContent = converter.makeHtml(markdownContent);
+            document.getElementById("html-content").innerHTML = htmlContent;
+        });
+    </script>
+</body>
+</html>

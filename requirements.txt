@@ -1,0 +1,3 @@
+Flask==2.0.2
+youtube-transcript-api==0.4.4
+google.generativeai
