@@ -2,7 +2,7 @@ import google.generativeai as genai
 from typing import Dict, List
 
 # Manually set your API key
-GOOGLE_API_KEY = 'AIzaSyAYDLf3HqH1I1an0uPJ-3OnBCKRfCKsbZ4'
+GOOGLE_API_KEY = 'Your API KEY'
 genai.configure(api_key=GOOGLE_API_KEY)
 
 class GenerativeScripts:
