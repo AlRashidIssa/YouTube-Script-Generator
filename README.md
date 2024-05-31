@@ -16,7 +16,7 @@ YouTube Script Generator is a Python application developed during an internship 
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone [link to your GitHub repository]
+   git clone https://github.com/AlRashidIssa/YouTube-Script-Generator.git
    ```
 2. Install dependencies:
    ```bash
