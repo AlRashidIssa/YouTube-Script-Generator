@@ -2,7 +2,7 @@ import google.generativeai as genai
 from typing import Dict, List
 
 # Manually set your API key
-GOOGLE_API_KEY = 'Your API KEY'
+GOOGLE_API_KEY = 'Your_key_API'
 genai.configure(api_key=GOOGLE_API_KEY)
 
 class GenerativeScripts:
@@ -15,43 +15,40 @@ class GenerativeScripts:
             and values are lists of dictionaries containing text data.
 
     Methods:
-        generate_script() -> str:
-            Generates a cohesive script based on the combined text of all cleaned transcripts.
+        generate_sections() -> List[str]:
+            Generates script sections based on the cleaned transcripts.
+        
+        generate_final_script() -> str:
+            Generates a final cohesive script from the combined sections.
     """
     
-    def __init__(self, cleaned_scripts: Dict[str, List[Dict[str, str]]]):
+    def __init__(self, cleaned_scripts: str) -> None:
         """
         Constructs all the necessary attributes for the GenerativeScripts object.
 
         Args:
-            cleaned_scripts (Dict[str, List[Dict[str, str]]]): 
-                A dictionary of cleaned scripts with script names as keys and lists of 
-                dictionaries containing text entries as values.
+            cleaned_scripts (str): 
+                A string containing cleaned scripts with script names and text entries.
         """
+        self.model = genai.GenerativeModel(model_name='gemini-1.5-flash')
         self.cleaned_scripts = cleaned_scripts
 
-    def generate_script(self) -> str:
+    def generate_sections(self) -> List[str]:
         """
-        Generates a cohesive script from the combined text of all cleaned transcripts.
+        Generates script sections from the cleaned transcripts.
 
-        Combines all text entries from the cleaned scripts and sends a prompt to the 
-        generative AI model to create a summarized, cohesive script.
+        Combines text entries from each script and generates a summarized section for each.
 
         Returns:
-            str: The generated script or an error message if script generation fails.
+            List[str]: A list of generated script sections.
         """
         try:
-            # Combine all text entries into a single string
-            combined_text = " ".join([entry['text'] for transcript in self.cleaned_scripts.values() for entry in transcript])
-            
-            # Create a prompt for the generative model
-            prompt = "Summarize the following content and generate a cohesive script: " + combined_text
-            
-            # Generate content using the model
-            response = genai.generate_text(prompt, model='gemini-1.5-flash')
-            
-            # Return the generated script
-            return response['text']
+            prompt = "Summarize the following content and generate a cohesive script: " + self.cleaned_scripts
+            response = self.model.generate_content(prompt)
+
+            return response.text # type: ignore
         except Exception as e:
-            # Return an error message in case of an exception
-            return f"Error generating script: {str(e)}"
+            return [f"Error generating section for {str(e)}"]
+        
+# generative = GenerativeScripts(cleaned_scripts="")
+# generate_sections = generative.generate_sections()
